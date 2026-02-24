@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        .button_container {
+  display: flex;
+  align-items: center;
+}
+
+.button_container h2 {
+  margin-right: 10px;  /* Add some spacing between the text and buttons */
+}
+body {
+        background-color: antiquewhite;
+    }
+
+    .box {
+    width: 1400px;
+    height:50px;
+    overflow : auto;
+    background-color: #f1f1f1;
+    border: 2px solid #293503;
+    margin: 40px;
+    padding: 20px;
+    position: relative;
+    flex-direction:row;
+    border-radius:20px;
+    background-color: azure;
+}
+#user_profile , #user_dashboard , #place_order
+
+{
+    
+    display: inline-block;
+                outline: none;
+                cursor: pointer;
+                font-size: 10px;
+                line-height: 1;
+                border-radius: 500px;
+                transition-property: background-color,border-color,color,box-shadow,filter;
+                transition-duration: .3s;
+                border: 1px solid transparent;
+                letter-spacing: 1px;
+                min-width: 40px;
+                
+                white-space: normal;
+                font-weight: 700;
+                text-align: center;
+                padding: 10px 8px 12px;
+                color: #231914;
+                box-shadow: inset 0 0 0 2px #4d4f50;
+                background-color:rgb(223, 230, 198);
+                height: 30px;
+                
+
+}
+
+#user_profile:hover , #user_dashboard:hover , #place_order:hover {
+                    
+                    background-color: #c0ec97;
+                }
+                #logout_button , #remove_from_cart{
+        margin-left: 1px;
+        display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#logout_button:hover , #remove_from_cart:hover{
+    
+    background-color:  #f1553a;
+}    
+
+                #increase , #decrease{
+        margin-left: 1px;
+        display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 300px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 10px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #010113;
+    box-shadow: inset 0 0 0 2px #d3d3f1;
+    background-color: rgb(211, 211, 213);
+    height: 30px;
+}
+
+#increase:hover , #decrease:hover {
+    
+    background-color:  #acafb1;
+} 
+   
+    #cant_place_order
+
+{
+    
+    display: inline-block;
+                outline: none;
+                cursor: pointer;
+                font-size: 10px;
+                line-height: 1;
+                border-radius: 500px;
+                transition-property: background-color,border-color,color,box-shadow,filter;
+                transition-duration: .3s;
+                border: 1px solid transparent;
+                letter-spacing: 1px;
+                min-width: 40px;
+                
+                white-space: normal;
+                font-weight: 700;
+                text-align: center;
+                padding: 10px 8px 12px;
+                color: #231914;
+                box-shadow: inset 0 0 0 2px #5f6061;
+                background-color:rgb(195, 197, 189);
+                height: 30px;
+                
+
+}
+
+#cant_place_order:hover {
+                    
+                    background-color: #aab4aa;
+}
+.total_box{
+    margin-left: 1100px;
+    height: auto;
+    width: auto;
+    margin-bottom: 50px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    background-color: #fcefef;
+}   
+    
+.grand_total {
+  display: flex;
+  align-items: center;
+}
+
+.grand_total h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.grand_total button {
+  margin-left: 20px;
+}
+    </style>
+    
+</head>
+<body>
+    <div class="button_container">
+        <h2 class="text_success" style="margin-right:1245px">Cart</h2>
+        
+        <a href="{{url_for('user_profile',pid = customer.pid)}}">
+            <button  id="user_profile">User Profile</button>
+        </a>
+        
+        
+
+        <a href="{{url_for('logout')}}">
+            <button class="logout_btn" id="logout_button" onclick="window.location.href='index.html'">Logout</button>
+        </a>
+        <hr>
+    </div>
+    <hr> <br>
+    <a href="{{url_for('user_dashboard' ,pid=pid)}}">
+        <button id="user_dashboard">
+            &#60; Back to user dashboard
+        </button>
+    </a><br>
+  
+    {% if cart_products %}
+    {% for item in cart_products %}
+        <div class="box">
+            <b>{{ item.product.product_name }} </b> <br>
+            {{ item.product.rate_per_unit }} {{ item.product.unit }} 
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Quantity: 
+
+            {% if item.product.quantity >0 %}
+            <a href="{{url_for('decrease_quantity', pid = pid , product_id = item.1.product_id)}}">
+            <button class="decrease" id="decrease">-</button>
+            </a>
+            {{ item.cart.product_quantity }} 
+
+            <a href="{{url_for('increase_quantity', pid = pid , product_id = item.1.product_id)}}">
+            <button class="increase" id="increase">+</button>
+            </a>
+
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;
+            
+            <b>Total amount:  ₹ {{ item.cart.total_amount }}</b>
+
+            &emsp;&emsp;
+
+            <a href="{{url_for('remove_from_cart', pid = item.cart.pid , product_id = item.cart.cart_product_id)}}">
+                <button id="remove_from_cart">Remove Product</button>
+                </a>
+            {% else %}
+                <span style="color: red;">Item no longer in stock.</span>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;
+                <a href="{{url_for('remove_from_cart', pid = item.cart.pid , product_id = item.cart.cart_product_id)}}">
+                <button id="remove_from_cart">Remove Product</button>
+                </a>
+            {% endif %}
+
+
+
+
+
+        </div>
+    {% endfor %}
+    {% else %}
+    <h4>Cart is empty.</h4>
+    {% endif %}
+
+
+    
+    
+    Note: If you can't add anymore units of a product, it means we don't have anymore units of the item in stock.
+
+    <div class="total_box">
+        <div class="grand_total">
+          <h2><u>Grand Total: ₹{{ grand_total }}</u></h2>
+          {% if cart_products and grand_total > 0 %}
+          
+            <a href = "{{url_for('place_order' , pid = pid)}}">
+            <button id="place_order">Place Order</button>
+         
+        </a>
+          {% else %}
+            
+            <button id="cant_place_order">Place Order</button>
+          
+          {% endif %}
+        </div>
+      </div>
+      
+
+</body>
+</html>

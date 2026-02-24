@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding a product</title>
+    <style>
+        .button_container {
+  display: flex;
+  align-items: center;
+}
+
+.button_container h2 {
+  margin-right: 10px;  /* Add some spacing between the text and buttons */
+}
+
+.button_container a {
+  margin-right: 10px;  /* Add some spacing between the buttons */
+}
+body {
+        background-color: antiquewhite;
+    }
+    </style>
+</head>
+<body>
+    <div class="button_container">
+        <h2 class="text_success" style="margin-right:1000px">Welcome: {{session['name']}}</h2>
+
+        <a href="{{url_for('user_profile',pid = customer.pid)}}">
+            <button  id="user_profile">User Profile</button>
+        </a>
+        
+       
+        <a href="{{url_for('logout')}}">
+            <button class="logout_btn" id="logout_button" onclick="window.location.href='index.html'">Logout</button>
+        </a>
+        
+
+        
+    </div>   
+    <hr><br>
+
+    {{current_product}} {{category}}
+</body>
+</html>

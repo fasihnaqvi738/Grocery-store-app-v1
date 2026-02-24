@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+       
+
+        .container {
+            position: relative;
+            text-align: center;
+            border: 2px solid black;
+            margin: 180px auto;
+            padding: 40px;
+            width: 20%;
+            background-color: blanchedalmond;
+            border-radius: 20px;
+        }
+        #home_page{
+        margin-left: 1350px;
+    }
+    #home_page{
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#home_page:hover {
+    
+    background-color:  #f1553a;
+}
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+            
+           
+                <a href="{{url_for('home')}}">
+                    <button id="home_page" >Logout</button>
+                    </a>
+            
+        <hr>
+        <br>
+    <div class="container">
+        <h1>Add category</h1>
+        <form action="/add_category" method="POST">
+            <div>
+                <b>ENTER THE CATEGORY:</b><br><br>
+                <input type="text" id="category_id" name="category_name">
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Dashboard</title>
+    </head>
+    <style>
+        
+        body{
+            background-color:antiquewhite;
+        }
+        .box {
+    width: 1400px;
+    height:250px;
+    overflow : auto;
+    background-color: #f1f1f1;
+    border: 2px solid #293503;
+    margin: 40px;
+    padding: 20px;
+    position: relative;
+    flex-direction:row;
+    border-radius:20px;
+    background-color: azure;
+}
+
+
+.delete-form {
+    display: inline;
+    margin-left: 1200px;
+}
+
+.product_box{
+    float: left;
+    width: 200px;
+    height: 100px;
+    background-color: #f9e7e7;
+    border: 2px solid #293503;
+    padding-left: 20px;
+    margin-left: 6px;
+    text-align:justify;
+    flex-direction: column;
+    margin-bottom: 6px;
+    border-radius: 20px;
+    }
+    .button-container {
+        text-align: center;
+    }
+
+    #summary_page, #add_category_page,  #add_product_page, #edit_product_button,
+    #product_actions_button
+
+    {
+        
+        display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 10px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 1px;
+                    min-width: 40px;
+                    
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 10px 8px 12px;
+                    color: #231914;
+                    box-shadow: inset 0 0 0 2px #4d4f50;
+                    background-color:rgb(223, 230, 198);
+                    height: 30px;
+                    
+                
+    }
+
+    #summary_page:hover, #add_category_page:hover,  #add_product_page:hover, #edit_product_button:hover,
+    #product_actions_button:hover{
+                        
+                        background-color: #c0ec97;
+                    }
+
+    #delete_category_button, #home_page {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#delete_category_button:hover, #home_page:hover {
+    
+    background-color:  #f1553a;
+}
+
+    #home_page{
+        margin-left: 1350px;
+    }
+
+    </style>
+    <body>
+        <div class="button_container">
+        <h1>Admin Dashboard</h1>
+            
+           
+                <a href="{{url_for('home')}}">
+                    <button id="home_page" >Logout</button>
+                    </a>
+    </div>   
+        <hr>
+        <br>
+        
+        <a href="{{url_for('add_category')}}">
+            <button id="add_category_page" >Add category</button>
+            </a>
+
+            <div id="container">
+                {% if categories %}
+                    {% for category in categories %}
+                        <div class="box">
+                            
+                            
+                            <h2>{{ category.category_name }}</h2>
+
+                            
+                            <form class="delete-form" action="{{url_for('delete_category', category_id=category.category_id)}}" method="POST">
+                                <input type="hidden" name="category_id" value="{{ category.category_id }}">
+                                <button type="submit" class="delete-button" id="delete_category_button">Delete Category</button>
+                            </form><br><br>
+                            
+                            
+                            
+                            <a href = "add_product/{{category.category_id}}">
+                            <button id="add_product_page">Add a Product</button>
+                            </a>
+                           
+                            <a href = "edit_category/{{category.category_id}}">
+                                <button id="edit_product_button">Edit Category</button>
+                                </a>
+                            
+                            <br>
+                            <br>
+
+                                {% for current_product in product %}
+                                    {% if current_product.category_id == category.category_id %}
+
+                                    <div class="product_box">
+                                        {{current_product.product_name}}  <br> <br>
+                                        <a href = "{{url_for('product_actions', product_id = current_product.product_id)}}">
+                                            <button id="product_actions_button" >Actions</button>
+                                        </a>
+                                    </div>
+                                    
+
+
+                                    {% endif %}
+
+                            {% endfor%}
+
+
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-categories">
+                        <br>
+                        No categories created.
+                    </div>
+                {% endif %}
+            </div>
+            
+            
+    </body>
+</html>
+
+

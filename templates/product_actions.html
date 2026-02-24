@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Actions</title>
+    <style>
+        body{
+            background-color:antiquewhite;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+            border: 2px solid black;
+            margin: 180px auto;
+            padding: 40px;
+            width: 20%;
+            background-color: #fcefef;
+            border-radius: 20px;
+        }
+        #edit_product_button{
+            display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 10px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 1px;
+                    min-width: 40px;
+                    
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 10px 8px 12px;
+                    color: #231914;
+                    box-shadow: inset 0 0 0 2px #616467;
+                    background-color:rgb(223, 230, 198);
+                    height: 30px;
+                    
+        }
+
+        #edit_product_button:hover{
+            background-color: #c0ec97;
+        }
+
+
+        #delete_product_button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#delete_product_button:hover {
+   
+    background-color:  #f1553a;
+}
+#home_page{
+        margin-left: 1350px;
+    }
+    #home_page{
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#home_page:hover {
+    
+    background-color:  #f1553a;
+}
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+            
+           
+                <a href="{{url_for('home')}}">
+                    <button id="home_page" >Logout</button>
+                    </a>
+            
+        <hr>
+        <br>
+    <div class="container">
+        <h2>PRODUCT ACTIONS</h2>  <br>
+        
+        <a href="{{url_for('edit_product',product_id = product_id)}}">
+            <button id="edit_product_button">Edit Product</button><br><br>
+            </a> <br>
+            <form class="delete-form" action="{{url_for('delete_product' , product_id = product_id)}}" method="POST">
+                <input type="hidden" name="product_id" value="{{ product_id }}">
+                <button type="submit" class="delete-button" id="delete_product_button">Delete Product</button>
+            </form><br><br>
+    </div>
+</body>
+</html>

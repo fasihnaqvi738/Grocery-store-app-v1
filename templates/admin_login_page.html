@@ -1,0 +1,80 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            border: 2px solid black;
+            margin: 180px auto;
+            padding: 40px;
+            width: 20%;
+            background-color: blanchedalmond;
+            border-radius: 20px;
+        }
+        #login
+
+{
+    
+    display: inline-block;
+                outline: none;
+                cursor: pointer;
+                font-size: 10px;
+                line-height: 1;
+                border-radius: 500px;
+                transition-property: background-color,border-color,color,box-shadow,filter;
+                transition-duration: .3s;
+                border: 1px solid transparent;
+                letter-spacing: 1px;
+                min-width: 40px;
+                
+                white-space: normal;
+                font-weight: 700;
+                text-align: center;
+                padding: 10px 8px 12px;
+                color: #231914;
+                box-shadow: inset 0 0 0 2px #4d4f50;
+                background-color:rgb(223, 230, 198);
+                height: 30px;
+                
+
+}
+
+ #login:hover {
+                    
+                    background-color: #c0ec97;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Login</h1>
+        <form action="/admin_login" method="POST">
+            <div>
+                <input type="text" id="username" name="username" placeholder="Username">
+            </div>
+            <br>
+            <div>
+                <input type="password" id="password" name="password" placeholder="Password">
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit" id="login">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

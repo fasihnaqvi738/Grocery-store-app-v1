@@ -1,0 +1,88 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            /* position: relative; */ 
+            text-align: center;
+            border: 2px solid black;
+            margin: 180px auto;
+            padding: 40px;
+            width: 20%;
+            background-color: blanchedalmond;
+            border-radius: 20px;
+        }
+        #user_login_button{
+            display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 10px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 1px;
+                    min-width: 60px;
+                    
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 10px 8px 12px;
+                    color: #231914;
+                    box-shadow: inset 0 0 0 2px #4d4f50;
+                    background-color:rgb(223, 230, 198);
+                    height: 30px;
+        }
+
+        #user_login_button:hover{
+            background-color: #c0ec97;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Login</h1>
+        <form method="POST" action="/login">
+            <div>
+                <input type="text" id="username" name="username" placeholder="Username" value="{{ session.get('name', '') }}">
+            </div>
+            <br>
+            <div>
+                <input type="password" id="password" name="password" placeholder="Password" value="{{ session.get('password', '') }}">
+            </div>
+            <br>
+            <div class="button">
+                
+                <input type="submit" id="user_login_button" value="Login">
+           
+                
+            </div>  <br> <br> 
+            New User?
+            <a href="{{ url_for('register') }}">
+                Register Yourself
+            </a>
+        </form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <span style="color: red;">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </span>
+  {% endif %}
+{% endwith %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <style>
+        body{
+           background-color:antiquewhite;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+            border: 2px solid black;
+            margin: 180px auto;
+            padding: 40px;
+            width: 20%;
+            background-color: blanchedalmond;
+            border-radius: 20px;
+        }
+        #home_page{
+        margin-left: 1350px;
+    }
+    #home_page{
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#home_page:hover {
+    
+    background-color:  #f1553a;
+}
+#edit
+
+{
+    
+    display: inline-block;
+                outline: none;
+                cursor: pointer;
+                font-size: 10px;
+                line-height: 1;
+                border-radius: 500px;
+                transition-property: background-color,border-color,color,box-shadow,filter;
+                transition-duration: .3s;
+                border: 1px solid transparent;
+                letter-spacing: 1px;
+                min-width: 40px;
+                
+                white-space: normal;
+                font-weight: 700;
+                text-align: center;
+                padding: 10px 8px 12px;
+                color: #231914;
+                box-shadow: inset 0 0 0 2px #4d4f50;
+                background-color:rgb(223, 230, 198);
+                height: 30px;
+                
+
+}
+
+ #edit:hover {
+                    
+                    background-color: #c0ec97;
+                }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+            
+           
+                <a href="{{url_for('home')}}">
+                    <button id="home_page" >Logout</button>
+                    </a>
+            
+        <hr>
+        <br>
+    <div class="container">
+    <form action="{{ url_for('edit_product', product_id=product_id) }}" method="POST" id="edit_product_form">
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <label for="product_name">Product Name:</label>
+        <input type="text" id="product_name" value={{product.product_name}} name="product_name"><br><br>
+        <label for="unit">Unit:</label>
+        <select id="dropdown" name="unit" value="{{product.unit}}">
+
+            {% if product.unit == 'Rs'%}
+                <option value="Rs" selected >Rs</option>
+            {% else %}
+                <option value="Rs">Rs</option>
+            {% endif %}
+
+            {% if product.unit == 'Rs/Kg' %}
+                <option value="Rs/Kg" selected >Rs/Kg</option>
+            {% else %}
+                <option value="Rs/Kg">Rs/Kg</option>
+            {% endif %}
+
+            {% if product.unit == 'Rs/Dozen'%}
+                <option value="Rs/Dozen"  selected >Rs/Dozen</option>
+            {% else %}
+                <option value="Rs/Dozen" >Rs/Dozen</option>
+            {% endif %}
+
+            {% if product.unit == 'Rs/Gram'%}
+                <option value="Rs/Gram"  selected >Rs/Gram</option>
+            {% else %}
+                <option value="Rs/Gram">Rs/Gram</option>
+            {% endif %}
+            
+        </select>
+        <br><br>
+        <label for="rate" >Rate/Unit:</label>
+        <input type="number" id="rate" name="rate" value="{{product.rate_per_unit}}"><br><br>
+        <label for="quantity" >Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="{{product.quantity}}"><br><br>
+        
+        <button type="submit" id="edit">Edit Product</button>
+    </form>
+    </div>
+</body>
+</html>

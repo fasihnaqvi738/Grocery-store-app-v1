@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+</head>
+<style>
+    .search {
+        text-align: center;
+        display: block;
+        width: 35%;
+        padding: 2px;
+        border: 2px solid black;
+        margin: 6px auto;
+        border-radius: 20px;
+        font-size: 17px;
+        background-color: #f6ebf4;
+    }
+    .categories {
+        text-align: center;
+        display: block;
+        width: 80%;
+        padding: 2px;
+        border: 2px solid black;
+        margin: 6px auto;
+        border-radius: 10px;
+        font-size: 17px;
+    }
+    body {
+        background-color: antiquewhite;
+    }
+   
+    .box {
+    width: 1400px;
+    height:220px;
+    overflow : auto;
+    background-color: #f1f1f1;
+    border: 2px solid #293503;
+    margin: 40px;
+    padding: 20px;
+    position: relative;
+    flex-direction:row;
+    border-radius:20px;
+    background-color: azure;
+}
+    .product_box {
+        float: left;
+        width: 200px;
+        height: 100px;
+        background-color: #fcefef;
+        border: 2px solid #293503;
+        padding-left: 20px;
+        margin-left: 6px;
+        margin-bottom: 20px;
+        text-align: justify;
+        flex-direction: column;
+        border-radius: 20px;
+    }
+
+    #logout_button{
+        margin-left: 1px;
+        display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#logout_button:hover {
+    
+    background-color:  #f1553a;
+}
+.button_container {
+  display: flex;
+  align-items: center;
+}
+
+.button_container h2 {
+  margin-right: 10px;  /* Add some spacing between the text and buttons */
+}
+
+.button_container a {
+  margin-right: 10px;  /* Add some spacing between the buttons */
+}
+    #cart_button{
+        margin-left: 1px;
+    }
+    #user_profile{
+        float: right;
+    }
+
+
+    #cart, #user_profile , #add_to_cart , #search
+
+    {
+        
+        display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 10px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 1px;
+                    min-width: 40px;
+                    
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 10px 8px 12px;
+                    color: #231914;
+                    box-shadow: inset 0 0 0 2px #4d4f50;
+                    background-color:rgb(223, 230, 198);
+                    height: 30px;
+                    
+
+    }
+
+    #cart:hover, #user_profile:hover , #add_to_cart:hover , #search:hover{
+                        
+                        background-color: #c0ec97;
+                    }
+    
+
+    #out_of_stock {
+        display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 10px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 1px;
+                    min-width: 40px;
+                    
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 10px 8px 12px;
+                    color: #231914;
+                    box-shadow: inset 0 0 0 2px #4d4f51;
+                    background-color:rgb(187, 188, 185);
+                    height: 30px;
+    }
+
+    #out_of_stock:hover {
+        background-color: #9c9d9f;
+    }
+   
+</style>
+<body>
+    <div class="button_container">
+        <h2 class="text_success" style="margin-right:1000px">Welcome: {{session['name']}}</h2>
+
+        <a href="{{url_for('user_profile',pid = customer.pid)}}">
+            <button  id="user_profile">User Profile</button>
+        </a>
+        <a href="{{url_for('user_cart',pid = customer.pid)}}">
+            <button  id="cart">Cart</button>
+        </a>       
+        <a href="{{url_for('logout')}}">
+            <button class="logout_btn" id="logout_button" onclick="window.location.href='index.html'">Logout</button>
+        </a>
+        
+
+        <hr>
+    </div>    
+        
+    <hr><br>
+    <div class="search">
+        <form action="{{url_for('search' , pid = customer.pid)}}" method = "POST">
+            Search for products and categories:
+            <input type="search" name="search_term" placeholder='eg: "Bread" '>
+            <input type="submit" value="Search" id="search">
+        </form>
+    </div>
+    <div class="container">
+        {% if categories %}
+            {% for category in categories %}
+                <div class="box">
+                    <h2>{{ category.category_name }}</h2>
+
+                    {% for current_product in product %}
+                        {% if current_product.category_id == category.category_id %}
+                            <div class="product_box">
+                                <h3>{{ current_product.product_name }}</h3>
+                                {{current_product.rate_per_unit }} {{ current_product.unit}} 
+                                
+                                {% if current_product.quantity == 0 %}
+                                <button class="out_of_stock" id="out_of_stock">Out of stock</button>
+                                {% else %}
+                                <a href="{{url_for('add_to_cart' , cart_product_id = current_product.product_id ,   pid = pid.pid ,product_quantity=1)}}">
+                                    <button type="submit" class="add_to_cart" id="add_to_cart">Add to cart</button>
+                                </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+
+
+            {% endfor %}
+        {% else %}
+            No products available for sale.
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <title>User Dashboard</title>
+    </head>
+    <style>
+        .search{
+            text-align:center;
+        display:block;
+        width:50%;
+        padding: 2px;
+        border:2px solid black;
+        margin:6px auto;
+        border-radius: 10px;
+        font-size: 17px;
+        }
+        .categories{
+            text-align:center;
+        display:block;
+        width: 80%;
+        padding: 2px;
+        border:2px solid black;
+        margin:6px auto;
+        border-radius: 10px;
+        font-size: 17px;
+        }
+        body{
+            background-color:antiquewhite;
+        }
+        .logout{
+            padding-left: 1400px;
+        }
+        .box {
+    width: 1400px;
+    height: 200px;
+    background-color: #f1f1f1;
+    border: 2px solid #293503;
+    margin: 40px;
+    padding: 20px;
+    position: relative;
+    flex-direction: unset;
+    border-radius: 20px;
+   
+    
+}
+.product_box{
+    float: left;
+    width: 200px;
+    height: 100px;
+    background-color: #fcefef;
+    border: 2px solid #293503;
+    padding-left: 20px;
+    margin-left: 6px;
+    text-align:justify;
+    flex-direction: column;
+   
+    border-radius: 20px;
+    }
+    </style>
+    <body>
+        <div class="logout">
+            <a href="{{url_for('logout')}}">
+            <button class="logout_btn" onclick="window.location.href='index.html'">Logout</button>
+            </a>
+        </div>
+        <div>
+            <h3 class="text_success">Welcome: {{session['name']}} </h3>
+        </div>
+        <div class="search">
+            <form action="/search" method="get">
+                <input type="text" name="query" placeholder="Search for products">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <div class="container">
+            {% if categories %}
+
+
+                {% for category in categories %}
+                    <div class="box">
+                        <h3>{{ category.category_name }}</h3>
+
+                        {% for current_product in product %}
+                                {% if current_product.category_id == category.category_id %}
+
+                                    <div class="product_box">
+                                        {{current_product.product_name}}  <br> <br>
+                                    
+                                    </div>
+
+                                {% endif %}
+                        {% endfor%}
+
+                    </div>
+                {% endfor %}
+           
+
+
+
+            {% else %}
+                    No products available for sale.
+            {% endif %}
+        </div>
+    </body>
+</html>  -->
+
+

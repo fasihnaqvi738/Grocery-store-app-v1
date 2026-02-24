@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+    <style>
+    .search {
+        text-align: center;
+        display: block;
+        width: 50%;
+        padding: 2px;
+        border: 2px solid black;
+        margin: 6px auto;
+        border-radius: 10px;
+        font-size: 17px;
+    }
+    .categories {
+        text-align: center;
+        display: block;
+        width: 80%;
+        padding: 2px;
+        border: 2px solid black;
+        margin: 6px auto;
+        border-radius: 10px;
+        font-size: 17px;
+    }
+    body {
+        background-color: antiquewhite;
+    }
+   
+    .box {
+    width: 1400px;
+    height:220px;
+    overflow : auto;
+    background-color: #f1f1f1;
+    border: 2px solid #293503;
+    margin: 40px;
+    padding: 20px;
+    position: relative;
+    flex-direction:row;
+    border-radius:20px;
+    background-color: azure;
+}
+    .product_box {
+        float: left;
+        width: 200px;
+        height: 100px;
+        background-color: #fcefef;
+        border: 2px solid #293503;
+        padding-left: 20px;
+        margin-left: 6px;
+        margin-bottom: 20px;
+        text-align: justify;
+        flex-direction: column;
+        border-radius: 20px;
+    }
+
+    #logout_button{
+        margin-left: 1px;
+        display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#logout_button:hover {
+    
+    background-color:  #f1553a;
+}
+.button_container {
+  display: flex;
+  align-items: center;
+}
+
+.button_container h2 {
+  margin-right: 10px;  /* Add some spacing between the text and buttons */
+}
+
+.button_container a {
+  margin-right: 10px;  /* Add some spacing between the buttons */
+}
+    #cart_button{
+        margin-left: 1px;
+    }
+    #user_profile{
+        float: right;
+    }
+
+
+    #cart, #user_profile , #add_to_cart 
+
+    {
+        
+        display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 10px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 1px;
+                    min-width: 40px;
+                    
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 10px 8px 12px;
+                    color: #231914;
+                    box-shadow: inset 0 0 0 2px #4d4f50;
+                    background-color:rgb(223, 230, 198);
+                    height: 30px;
+                    
+
+    }
+
+    #cart:hover, #user_profile:hover , #add_to_cart:hover{
+                        
+                        background-color: #c0ec97;
+                    }
+                    .box {
+    width: 1400px;
+    height:220px;
+    overflow : auto;
+    background-color: #f1f1f1;
+    border: 2px solid #293503;
+    margin: 40px;
+    padding: 20px;
+    position: relative;
+    flex-direction:row;
+    border-radius:20px;
+    background-color: azure;
+}
+    
+.product_box {
+        float: left;
+        width: 200px;
+        height: 100px;
+        background-color: #fcefef;
+        border: 2px solid #293503;
+        padding-left: 20px;
+        margin-left: 6px;
+        margin-bottom: 20px;
+        text-align: justify;
+        flex-direction: column;
+        border-radius: 20px;
+    }
+    .individual_product_box {
+    width: 1400px;
+    height:100px;
+    overflow : auto;
+    background-color: #f1f1f1;
+    border: 2px solid #293503;
+    margin: 40px;
+    padding: 20px;
+    position: relative;
+    flex-direction:row;
+    border-radius:20px;
+    background-color: azure;
+}
+#out_of_stock {
+        display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 10px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 1px;
+                    min-width: 40px;
+                    
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 10px 8px 12px;
+                    color: #231914;
+                    box-shadow: inset 0 0 0 2px #4d4f51;
+                    background-color:rgb(187, 188, 185);
+                    height: 30px;
+    }
+
+    #out_of_stock:hover {
+        background-color: #9c9d9f;
+    }
+    #user_dashboard
+
+{
+    
+    display: inline-block;
+                outline: none;
+                cursor: pointer;
+                font-size: 10px;
+                line-height: 1;
+                border-radius: 500px;
+                transition-property: background-color,border-color,color,box-shadow,filter;
+                transition-duration: .3s;
+                border: 1px solid transparent;
+                letter-spacing: 1px;
+                min-width: 40px;
+                
+                white-space: normal;
+                font-weight: 700;
+                text-align: center;
+                padding: 10px 8px 12px;
+                color: #231914;
+                box-shadow: inset 0 0 0 2px #4d4f50;
+                background-color:rgb(223, 230, 198);
+                height: 30px;
+                
+
+}
+
+ #user_dashboard:hover {
+                    
+                    background-color: #c0ec97;
+                }
+    </style>
+</head>
+<body>
+    <div class="button_container">
+        <h2 class="text_success" style="margin-right:1000px">Welcome: {{session['name']}}</h2>
+
+        <a href="{{url_for('user_profile',pid = customer.pid)}}">
+            <button  id="user_profile">User Profile</button>
+        </a>
+        <a href="{{url_for('user_cart',pid = customer.pid)}}">
+            <button  id="cart">Cart</button>
+        </a>       
+        <a href="{{url_for('logout')}}">
+            <button class="logout_btn" id="logout_button" onclick="window.location.href='index.html'">Logout</button>
+        </a>
+        
+
+        <hr>
+    </div>  
+    <hr><br>
+    <a href="{{url_for('user_dashboard' ,pid=pid)}}">
+        <button id="user_dashboard">
+            &#60; Back to user Dashboard
+        </button>
+    </a>
+    <h2>Categories found:</h2>
+    {% if searched_categories %}
+        {% for category in searched_categories %}
+            <div class="box">
+                <h2>{{ category.category_name }}</h2>
+
+                    {% for current_product in product %}
+                        {% if current_product.category_id == category.category_id %}
+                            <div class="product_box">
+                                <h3>{{ current_product.product_name }}</h3>
+                                {{current_product.rate_per_unit }} {{ current_product.unit}} 
+                                
+                                {% if current_product.quantity == 0 %}
+                                <button class="out_of_stock" id="out_of_stock">Out of stock</button>
+                                {% else %}
+                                <a href="{{url_for('add_to_cart' , cart_product_id = current_product.product_id ,   pid = pid ,product_quantity=1)}}">
+                                    <button type="submit" class="add_to_cart" id="add_to_cart">Add to cart</button>
+                                </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+    No categories found.
+    {% endif %}
+    <h2>Products found:</h2>
+    {% if searched_products %}
+        {% for product in searched_products %}
+        <div class="individual_product_box">
+            <h3>{{ product.product_name }}</h3>
+            
+                {{product.rate_per_unit }} {{ product.unit}} 
+                                
+                {% if product.quantity == 0 %}
+                <button class="out_of_stock" id="out_of_stock">Out of stock</button>
+                {% else %}
+                <a href="{{url_for('add_to_cart' , cart_product_id = product.product_id ,   pid = pid ,product_quantity=1)}}">
+                    <button type="submit" class="add_to_cart" id="add_to_cart">Add to cart</button>
+                </a>
+                {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+    No products found.
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,89 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            background-color:antiquewhite;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+            border: 2px solid black;
+            margin: 180px auto;
+            padding: 40px;
+            width: 20%;
+            background-color: blanchedalmond;
+            border-radius: 20px;
+        }
+        #home_page{
+        margin-left: 1350px;
+    }
+    #home_page{
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 1px;
+    min-width: 40px;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px 12px;
+    color: #231914;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: rgb(253, 161, 135);
+    height: 30px;
+}
+
+#home_page:hover {
+    
+    background-color:  #f1553a;
+}
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+            
+           
+                <a href="{{url_for('home')}}">
+                    <button id="home_page" >Logout</button>
+                    </a>
+            
+        <hr>
+        <br>
+    <div class="container">
+        <h2>Add a Product</h2> 
+
+
+        <form action="#" method="POST" id="add_product_form">
+            <label for="product_name">Product Name:</label>
+            <input type="text" id="product_name" name="product_name"><br><br>
+            <label for="unit">Unit:</label>
+            <select id="dropdown" name="unit">
+                <option value="Rs">Rs</option>
+                <option value="Rs/Kg">Rs/Kg</option>
+                <option value="Rs/Dozen">Rs/Dozen</option>
+                <option value="Rs/Gram">Rs/Gram</option>
+            </select>
+            <br><br>
+            <label for="rate">Rate/Unit:</label>
+            <input type="number" id="rate" name="rate"><br><br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity"><br><br>
+            
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>

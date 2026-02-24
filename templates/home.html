@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Grocery Store</title>
+        <style>
+            body{
+                background-color: wheat;
+            }
+            h1{
+                text-align: center;
+            }
+            .button{
+                
+                text-align: center;
+                position:relative;
+                color: black;
+                margin: 5px 9px;
+            }
+            .container{
+                /* position:relative; */
+                border:4px solid black;
+                align-items: center;
+                margin: 180px;
+                padding:40px;
+                background-color: bisque;
+                border-radius: 20px;
+            }
+            #user_button
+
+{
+    
+    display: inline-block;
+                outline: none;
+                cursor: pointer;
+                font-size: 12px;
+                line-height: 1;
+                border-radius: 500px;
+                transition-property: background-color,border-color,color,box-shadow,filter;
+                transition-duration: .3s;
+                border: 1px solid transparent;
+                letter-spacing: 1px;
+                min-width: 40px;
+                
+                white-space: normal;
+                font-weight: 700;
+                text-align: center;
+                padding: 9px 12px 14px;
+                color: #0b0402;
+                box-shadow: inset 0 0 0 2px #000406;
+                background-color: #dcf3c5;
+                height: 30px;
+                
+
+}
+
+ #user_button:hover {
+                    
+                    background-color: #cdfe9f;
+                }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        <h1>Welcome to Grocery Service</h1>
+        <div class="button">
+            <a href="{{url_for('index')}}">
+            <button id="user_button">User Login</button><br><br>
+            </a>
+            <a href="{{url_for('admin_login_page')}}">
+            Admin Login
+            </a>
+        <div>
+        </div>
+    </body>
+</html>
